@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ExploreCali.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -27,6 +28,7 @@ namespace ExploreCali
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<FormattingService>();
             services.AddTransient<FeatureToggles>(x => new FeatureToggles
             {
                 EnableDeveloperExceptions =
