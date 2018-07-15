@@ -29,6 +29,7 @@ namespace ExploreCali
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<FormattingService>();
+            services.AddTransient<SpecialDataContext>();
             services.AddTransient<FeatureToggles>(x => new FeatureToggles
             {
                 EnableDeveloperExceptions =
