@@ -14,14 +14,16 @@ namespace ExploreCali.controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            return new ContentResult { Content= "Blog Post" };
+            //return new ContentResult { Content= "Blog Post" };
+            return View();
         }
         [Route("{year:min(1994)}/{month:range(1,12)}/{key}")]
         public IActionResult Post(int year,int  month,String key)
         {
-            return new ContentResult { Content = String.Format(
-                "year : {0}; month : {1}; key : {2}", year, month, key
-            ) };
+            //return new ContentResult { Content = String.Format(
+            //    "year : {0}; month : {1}; key : {2}", year, month, key
+            //) };
+            return View();
         }
     }
 

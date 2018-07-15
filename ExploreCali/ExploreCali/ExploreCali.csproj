@@ -9,6 +9,8 @@
     <Folder Include="controllers\" />
     <Folder Include="Views\" />
     <Folder Include="Views\Home\" />
+    <Folder Include="Views\Shared\" />
+    <Folder Include="Views\Blog\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,8 +20,10 @@
 
   <ItemGroup>
     <Content Remove="EmptyJSONFile.json" />
+    <Content Remove="Views\Shared\index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="config.json" />
+    <None Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
 </Project>
