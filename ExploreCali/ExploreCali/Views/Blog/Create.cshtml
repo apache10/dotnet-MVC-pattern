@@ -1,0 +1,27 @@
+﻿@model ExploreCali.Models.Post
+@{ 
+    Layout = "_Layout";
+}
+
+<h1>
+    Create blog Post
+</h1>
+<fieldset>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary();
+        <p>
+            @Html.LabelFor(x => x.Title)
+            @Html.EditorFor(x => x.Title)
+            @Html.ValidationMessageFor(x => x.Title)
+        </p>
+        <p>
+            @Html.LabelFor(x => x.Body)
+            @Html.EditorFor(x => x.Body)
+            @Html.ValidationMessageFor(x => x.Body)
+        </p>
+        <p>
+            <button type="submit" >create post</button>
+        </p>
+     }
+</fieldset>

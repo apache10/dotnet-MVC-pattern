@@ -55,6 +55,25 @@ namespace ExploreCali.controllers
             };
             return View(post);
         }
+        [HttpGet,Route("create")]
+        public IActionResult Create(){
+            return View();
+        }
+        [HttpPost,Route("create")]
+        public IActionResult Create(Post post)
+        {
+            if (!ModelState.IsValid)
+                return View();
+            //over writing the field
+            post.Author = User.Identity.Name;
+            post.Posted = DateTime.Now;
+            return View();
+        }
+        //public class CreatePostRequest {
+        //    public string Title { get; set; }
+        //    public string Body{ get; set; }
+        //}
+
     }
 
 }
