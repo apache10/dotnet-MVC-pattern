@@ -1,4 +1,5 @@
-﻿@model ExploreCali.Models.Post
+﻿@addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
+@model ExploreCali.Models.Post
 @{ 
     Layout = "_Layout";
 }
@@ -7,21 +8,20 @@
     Create blog Post
 </h1>
 <fieldset>
-    @using (Html.BeginForm())
-    {
-        @Html.ValidationSummary();
+    <form asp-action="Create" asp-controller="Blog">
+        <div asp-validation-summary="ModelOnly" class="input-validation-error"></div>
         <p>
-            @Html.LabelFor(x => x.Title)
-            @Html.EditorFor(x => x.Title)
-            @Html.ValidationMessageFor(x => x.Title)
+            <label asp-for="Title"></label>
+            <textarea asp-for="Title" class="form-control" placeholder="blog Title"></textarea>
+            <span asp-validation-for="Title"></span>
         </p>
         <p>
-            @Html.LabelFor(x => x.Body)
-            @Html.EditorFor(x => x.Body)
-            @Html.ValidationMessageFor(x => x.Body)
+            <label asp-for="Body"></label>
+            <textarea asp-for="Body" class="form-control" placeholder="blog content"></textarea>
+            <span asp-validation-for="Body"></span>
         </p>
         <p>
-            <button type="submit" >create post</button>
+            <button type="submit">create post</button>
         </p>
-     }
+    </form>
 </fieldset>
