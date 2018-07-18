@@ -6,6 +6,7 @@ using ExploreCali.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -36,6 +37,12 @@ namespace ExploreCali
                     configuration.GetValue<bool>("FeatureToggles:EnableDeveloperExceptions")
             });
             services.AddMvc();
+
+            services.AddDbContext<BlogDataContext>(options => 
+            {
+                var connectingString = configuration.GetConnectionString("BlogDataContext");
+                options.UseSqlServer(connectingString);   
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

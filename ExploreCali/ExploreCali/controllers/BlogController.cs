@@ -12,31 +12,16 @@ namespace ExploreCali.controllers
     [Route("blog")]
     public class BlogController : Controller
     {
+        private readonly BlogDataContext _db;
+        public BlogController(BlogDataContext db){
+            _db =  db;
+        }
         // GET: /<controller>/
         public IActionResult Index()
         {
             //return new ContentResult { Content= "Blog Post" };
 
-            var posts = new[]{
-                new Post{
-                    Title = "My First Blog",
-                    Author = "Gaurav",
-                    Posted = DateTime.Now,
-                    Body = "this is my first post"
-                },
-                new Post{
-                    Title = "My Second Blog",
-                    Author = "Gaurav",
-                    Posted = DateTime.Now,
-                    Body = "this is my Second post"
-                },
-                new Post{
-                    Title = "My Third Blog",
-                    Author = "Gaurav",
-                    Posted = DateTime.Now,
-                    Body = "this is my Third post"
-                }
-            };
+            var posts = _db.Posts.OrderByDescending(x => x.Posted).Take(5).ToArray();
             return View(posts);
         }
         [Route("{year:min(1994)}/{month:range(1,12)}/{key}")]
@@ -67,7 +52,16 @@ namespace ExploreCali.controllers
             //over writing the field
             post.Author = User.Identity.Name;
             post.Posted = DateTime.Now;
-            return View();
+
+            _db.Posts.Add(post);
+            _db.SaveChanges();
+
+            return RedirectToAction("Post", "Blog", new
+            {
+                year = post.Posted.Year,
+                month = post.Posted.Month,
+                key = post.Key
+            });
         }
         //public class CreatePostRequest {
         //    public string Title { get; set; }
